@@ -1,0 +1,84 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.outer-container {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-around;
+    flex-direction: column;
+    opacity: 0;
+}
+
+.container {
+    padding: 1em;
+}
+
+.select-wrapper li *, label {
+    color: rgb(96, 125, 139) !important;
+}
+
+img.icon {
+    height: 1em;
+}
+
+ul.tabs {
+    display: flex;
+    justify-content: stretch;
+}
+
+ul.tabs li.tab {
+    flex-grow: 1;
+}
+
+.tabs .tab a {
+    display: flex !important;
+    flex-direction: column;
+    color: inherit !important;
+}
+
+.tabs .tab a:hover {
+    background-color: rgb(96, 125, 139, 0.25) !important
+}
+
+.tabs .tab a.active {
+    background-color: transparent !important;
+}
+
+.tabs li.indicator {
+    background-color: rgb(96, 125, 139) !important;
+}
+
+.tab-content {
+    padding-top: 7em;
+}
+
+.brand-logo {
+    padding-left: 0.5em !important;
+}
+
+nav ul a {
+    display: inline-flex !important;
+}
+
+nav ul a i.material-icons {
+    margin-right: 0.25em !important;
+}
+
+.btn-row {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.btn-row .btn {
+    flex-grow: 1;
+    margin-right: 1em;
+}
+
+.btn-row .btn:last-child {
+    margin-right: 0;
+}

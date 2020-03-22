@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SigGen</title>
+    
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+<body>
+    <nav class="blue-grey">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo"><img class="icon" src="data:image/png;base64,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"/> SigGen</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="config.html"><i class="material-icons">settings</i> Configuration</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="outer-container">
+        <div class="container z-depth-2">
+            <ul class="tabs blue-grey-text">
+                <li class="tab"><a class="active" href="#square"><img src='data:image/svg+xml;utf8,<svg width="1000" height="1000" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg"><path d="M979,970H473V81H82V498H28V26H528V915H924V498H979"/></svg>' class="icon">Square</a></li>
+                <li class="tab"><a class="active" href="#sine"><img src='data:image/svg+xml;utf8,<svg width="1000" height="1000" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg"><path d="M736,818C634,818,569,706,494,577C487,564,480,551,472,538C464,525,457,512,450,500C386,390,331,295,271,295C254,295,190,313,70,537L6,503C155,222,242,222,271,222C373,222,438,334,513,463C520,476,527,489,535,502C543,515,550,528,557,540C621,650,676,745,736,745C753,745,817,727,937,503L1001,537C852,818,765,818,736,818z"/></svg>' class="icon">Sine</a></li>
+            </ul>
+            <div id="square" class="tab-content">
+                <form id="square-setup-form">
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <select name="pwm_channel">
+                                <option value="0" selected>0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                            </select>
+                            <label>Channel</label>
+                        </div>
+                        
+                        <div class="input-field col s4">
+                            <select name="timer_num">
+                                <option value="0" selected>0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                            <label>Timer</label>
+                        </div>
+                        
+                        <div class="input-field col s4">
+                            <select name="out_pin">
+                                <option value="0" selected>0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="27">27</option>
+                                <option value="33">33</option>
+                            </select>
+                            <label>Output GPIO Pin <a href="https://www.flickr.com/photos/jgustavoam/40089095211" title="Show Pinout" target="_blank"><i class="material-icons" style="font-size: 1.25em;">info</i></a></label>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="input-field col s4"></div>
+                        
+                        <div class="input-field col s4">
+                            <input placeholder="Resolution" name="resolution" type="number" min="1" max="20" value="4">
+                            <label for="resolution">Resolution (bit)</label>
+                            <span class="helper-text" data-error="wrong" data-success="right">Min: 1 / Max: 20</span>
+                        </div>
+                        
+                        <div class="input-field col s4">
+                            <label>
+                                <input type="checkbox" id="highspeed" name="highspeed" checked/>
+                                <span>Highspeed Mode</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <input placeholder="Frequency" name="pwm_frequency" type="number" min="1" max="40000000" value="4200">
+                            <label for="frequency">Frequency (Hz)</label>
+                            <span class="helper-text" data-error="wrong" data-success="right">Min: 1 / Max: 40MHz</span>
+                        </div>
+                        
+                        <div class="input-field col s4">
+                            <input placeholder="Duty" name="duty" type="number" min="0" max="100" value="50">
+                            <label for="duty">Duty (%)</label>
+                        </div>
+                        
+                        <div class="input-field col s4">
+                            <input placeholder="Phase" name="pwm_phase" type="number" min="0" max="360" value="0">
+                            <label for="phase">Phase (°)</label>
+                            <span class="helper-text" data-error="wrong" data-success="right">Min: 0° / Max: 360°</span>
+                        </div>
+                    </div>
+                    
+                    <div class="btn-row">
+                        <button class="btn waves-effect grey waves-light" type="reset">Reset</button>
+                        <button class="btn waves-effect grey waves-light" type="button" onclick="stopSquare()">Stop</button>
+                        <button class="btn waves-effect blue-grey waves-light" type="submit">Apply</button>
+                    </div>
+                </form>
+            </div>
+            <div id="sine" class="tab-content">
+                <form id="sine-setup-form">
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <select name="dac_channel">
+                                <option value="1" selected>1 (GPIO 25)</option>
+                                <option value="2">2 (GPIO 26)</option>
+                            </select>
+                            <label>Channel</label>
+                        </div>
+                        
+                        <div class="input-field col s4">
+                            <input placeholder="Clock Divider" name="clk_div" type="number" min="0" max="7" value="0">
+                            <label for="clk_div">Clock divider</label>
+                        </div>
+                        
+                        <div class="input-field col s4">
+                            <select name="invert">
+                                <option value="0">Off</option>
+                                <option value="1">All</option>
+                                <option value="2" selected>MSB</option>
+                                <option value="3">All but MSB</option>
+                            </select>
+                            <label>Invert</label>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <input placeholder="Frequency" name="dac_frequency" type="number" min="1" max="500000" value="4200">
+                            <label for="frequency">Frequency (Hz)</label>
+                            <span class="helper-text" data-error="wrong" data-success="right">Min: 1 / Max: 500kHz</span>
+                        </div>
+                        
+                        <div class="input-field col s4">
+                            <input placeholder="Phase" name="dac_phase" type="number" min="0" max="360" value="0">
+                            <label for="phase">Phase (°)</label>
+                            <span class="helper-text" data-error="wrong" data-success="right">Min: 0° / Max: 360°</span>
+                        </div>
+                        
+                        <div class="input-field col s4">
+                            <select name="scale">
+                                <option value="3">1/8</option>
+                                <option value="2">1/4</option>
+                                <option value="1">1/2</option>
+                                <option value="0" selected>Full</option>
+                            </select>
+                            <label>Amplitude</label>
+                        </div>
+                    </div>
+                    
+                    <div class="btn-row">
+                        <button class="btn waves-effect grey waves-light" type="reset">Reset</button>
+                        <button class="btn waves-effect grey waves-light" type="button" onclick="stopSine()">Stop</button>
+                        <button class="btn waves-effect blue-grey waves-light" type="submit">Apply</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+<script type="text/javascript">
+    function formatHz(value) {
+        if (value >= 1000000) {
+            return `${value / 1000000.0}MHz`;
+        } else if (value >= 1000) {
+            return `${value / 1000.0}kHz`;
+        } else {
+            return `${value}Hz`;
+        }
+    }
+    
+    $(document).ready(function(){
+        M.AutoInit();
+        $("*[name='resolution']").trigger("change");
+        $("*[name='clk_div']").trigger("change");
+        $(".outer-container").delay(100).animate({ opacity: 1 }, 250);
+    });
+    
+    function stopSquare(){
+        var params = {
+            type: "square",
+            pwm_channel: $("*[name='pwm_channel']").val(),
+            highspeed: $("*[name='highspeed']").is(":checked")
+        };
+        $.post("/stop", $.param(params)).done((res) => console.log(res));
+    }
+
+    function stopSine(){
+        var params = {
+            type: "sine",
+            dac_channel: $("*[name='dac_channel']").val()
+        };
+        $.post("/stop", $.param(params)).done((res) => console.log(res));
+    }
+    
+    $("button[type='reset']").on('click', function(event){
+        event.preventDefault();
+        $(this).parents("form").trigger("reset"); // forcing reset event
+        M.updateTextFields(); //updating labels from inputs
+    });
+    
+    $("*[name='resolution']").change(function(event) {
+        var resolution = parseInt($(this).val());
+        var max_freq = Math.round(80000000.0 / Math.pow(2, resolution));
+        $("*[name='pwm_frequency']").attr("max", max_freq).siblings(".helper-text").html(`Min: 1Hz / Max: ${formatHz(max_freq)}`);
+    });
+
+    $("*[name='clk_div']").change(function(event) {
+        var clk_div = parseInt($(this).val());
+        var min_freq = Math.round(135.0 / (clk_div + 1.0));
+        var max_freq = Math.round(135000.0 / (clk_div + 1.0));
+        $("*[name='dac_frequency']").attr("min", min_freq).attr("max", max_freq * 10).siblings(".helper-text").html(`Min: ${formatHz(min_freq)} / Max: ${formatHz(max_freq)} (without distortion)`);
+    });
+    
+    $("#square-setup-form").submit(function(event) {
+        // Stop form from submitting normally
+        event.preventDefault();
+        
+        // Get some values from elements on the page:
+        var $form = $(this);
+        
+        console.debug($form.serialize());
+        
+        var resolution = parseInt($("*[name='resolution']").val());
+        var max_value = Math.pow(2, resolution) - 1;
+        
+        var config = {
+            type: "square",
+            timer_num: $("*[name='timer_num']").val(),
+            pwm_channel: $("*[name='pwm_channel']").val(),
+            highspeed: $("*[name='highspeed']").is(":checked"),
+            resolution: resolution,
+            frequency: $("*[name='pwm_frequency']").val(),
+            duty: Math.round(max_value / 100.0 * $("*[name='duty']").val()),
+            phase: Math.round($("*[name='pwm_phase']").val() / 360.0 * max_value),
+            out_pin: $("*[name='out_pin']").val()
+        };
+        
+        console.debug(config);
+        
+        $.post("/setup", $.param(config)).done((res) => console.log(res));
+    });
+    
+    $("#sine-setup-form").submit(function(event) {
+        // Stop form from submitting normally
+        event.preventDefault();
+        
+        // Get some values from elements on the page:
+        var $form = $(this);
+        
+        console.debug($form.serialize());
+
+        var clk_div = parseInt($("*[name='clk_div']").val());
+        var min_freq = 135.0 / (clk_div + 1.0);
+        var frequency = Math.round($("*[name='dac_frequency']").val() / min_freq);
+        
+        var config = {
+            type: "sine",
+            dac_channel: $("*[name='dac_channel']").val(),
+            clk_div,
+            invert: $("*[name='invert']").val(),
+            frequency,
+            phase: Math.round($("*[name='dac_phase']").val() / 360.0 * 255.0),
+            scale: $("*[name='scale']").val()
+        };
+        
+        console.debug(config);
+        
+        $.post("/setup", $.param(config)).done(function(res) {
+            console.log(res);
+        });
+    });
+</script>
+</html>

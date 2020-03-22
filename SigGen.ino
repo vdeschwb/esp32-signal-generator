@@ -61,8 +61,8 @@ PWM_Module *pwm = new PWM_Module();
 Settings_Module* settings;
 
 // EEPROM-backed settings
-char ssid[STRBUF_LEN] = "";
-char password[STRBUF_LEN] = "";
+String ssid;
+String password;
 IPAddress local_ip;
 IPAddress gateway;
 IPAddress subnet;
@@ -237,20 +237,18 @@ void handleConfig() {
     case HTTP_GET:
         Serial.println("Getting configuration...");
 
-        server->send(200, "text/html", "{\"ssid\":\"" + String(ssid) + "\"," + "\"local_ip\":\"" + local_ip.toString() + "\"," + "\"gateway\":\"" + gateway.toString() + "\"," + "\"subnet\":\"" + subnet.toString() + "\"}");
+        server->send(200, "text/html", "{\"ssid\":\"" + ssid + "\"," + "\"local_ip\":\"" + local_ip.toString() + "\"," + "\"gateway\":\"" + gateway.toString() + "\"," + "\"subnet\":\"" + subnet.toString() + "\"}");
         break;
     case HTTP_POST:
         Serial.println("Setting configuration...");
 
         for (uint8_t i = 0; i < server->args(); i++) {
             if (server->argName(i) == "ssid"){
-                String ssid = server->arg(i);
-                Serial.print("Setting ssid to '");
-                Serial.print(ssid);
-                Serial.println("'");
+                ssid = server->arg(i);
+                Serial.println("Setting ssid to '" + ssid + "'");
                 settings->StoreString(SSID_SETTING, ssid);
             } else if (server->argName(i) == "password"){
-                String password = server->arg(i);
+                password = server->arg(i);
                 Serial.print("Setting password to '");
                 #ifdef SHOW_PASSWORDS
                     Serial.print(password);
@@ -260,25 +258,16 @@ void handleConfig() {
                 Serial.println("'");
                 settings->StoreString(PASSWORD_SETTING, password);
             } else if (server->argName(i) == "local_ip"){
-                IPAddress local_ip;
                 local_ip.fromString(server->arg(i));
-                Serial.print("Setting local_ip to '");
-                Serial.print(local_ip);
-                Serial.println("'");
+                Serial.println("Setting local_ip to '" + local_ip.toString() + "'");
                 settings->StoreIp(LOCAL_IP_SETTING, local_ip);
             } else if (server->argName(i) == "gateway"){
-                IPAddress gateway;
                 gateway.fromString(server->arg(i));
-                Serial.print("Setting gateway to '");
-                Serial.print(gateway);
-                Serial.println("'");
+                Serial.println("Setting gateway to '" + gateway.toString() + "'");
                 settings->StoreIp(GATEWAY_SETTING, gateway);
             } else if (server->argName(i) == "subnet"){
-                IPAddress subnet;
                 subnet.fromString(server->arg(i));
-                Serial.print("Setting subnet to '");
-                Serial.print(subnet);
-                Serial.println("'");
+                Serial.println("Setting subnet to '" + subnet.toString() + "'");
                 settings->StoreIp(SUBNET_SETTING, subnet);
             } else {
                 server->send(400, "text/html", "Invalid parameter: " + server->argName(i));
@@ -328,12 +317,12 @@ void SetupWebserver() {
 void loadSettings() {
   Serial.println("Loading Settings from ROM...");
 
-  settings->LoadString(SSID_SETTING, ssid);
+  settings->LoadString(SSID_SETTING, &ssid);
   Serial.print("ssid: '");
   Serial.print(ssid);
   Serial.println("'");
 
-  settings->LoadString(PASSWORD_SETTING, password);
+  settings->LoadString(PASSWORD_SETTING, &password);
   Serial.print("password: '");
   #ifdef SHOW_PASSWORDS
     Serial.print(password);
@@ -360,13 +349,10 @@ void loadSettings() {
 
 // Reset configuration defaults and store them in EEPROM
 void resetDefaults() {
-    String ssid = "";
-    String password = "";
-    IPAddress local_ip;
+    ssid = "";
+    password = "";
     local_ip.fromString("");
-    IPAddress gateway;
     gateway.fromString("192.168.1.1");
-    IPAddress subnet;
     subnet.fromString("255.255.255.0");
     
     settings->StoreString(SSID_SETTING, ssid);
@@ -400,8 +386,9 @@ void setup() {
 
     if (!wifi_connected) {
         // Wifi connection did not succeed, switch to AP mode
-        Serial.println("Could not connect to WiFi");
-        wifi->SetupAccessPoint();
+        Serial.println("Could not connect to WiFi. Starting AP...");
+        IPAddress ip = wifi->SetupAccessPoint();
+        Serial.println("AP started successfully. IP: " + ip.toString());
     } else {
         Serial.println("Successfully connected to WiFi");
     }

@@ -1,6 +1,6 @@
 #include "WiFi_Module.h"
 
-bool WiFi_Module::TryConnect(char* ssid, char* password, IPAddress local_ip, IPAddress gateway, IPAddress subnet) {
+bool WiFi_Module::TryConnect(String ssid, String password, IPAddress local_ip, IPAddress gateway, IPAddress subnet) {
     bool wifi_connected = false;
 
     bool wifi_configured = ssid[0];
@@ -17,7 +17,7 @@ bool WiFi_Module::TryConnect(char* ssid, char* password, IPAddress local_ip, IPA
         }
 
         // Connect using WPA personal
-        WiFi.begin(ssid, password);
+        WiFi.begin(ssid.c_str(), password.c_str());
 
         int ctr = 10;
         while (WiFi.status() != WL_CONNECTED && ctr-- > 0) {
@@ -33,6 +33,7 @@ bool WiFi_Module::TryConnect(char* ssid, char* password, IPAddress local_ip, IPA
 IPAddress WiFi_Module::SetupAccessPoint()
 {
     // Run device as access point with SSID "SigGen"
+    WiFi.disconnect(true);
     WiFi.softAP("SigGen");
     return WiFi.softAPIP();
 }

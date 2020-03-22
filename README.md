@@ -83,6 +83,8 @@ Documentation pending (monitor HTTP requests from the UI for reference).
 ## Future Work
 
 * Add more waveforms (triangle, sawtooth, arbitrary)
+* Improve WiFi connectivity (deal with disconnects)
+* Bluetooth connectability
 
 ## Collaboration
 

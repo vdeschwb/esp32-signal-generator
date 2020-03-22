@@ -7,7 +7,7 @@
 
 class WiFi_Module {
     public:
-        bool TryConnect(char* ssid, char* password, IPAddress local_ip, IPAddress gateway, IPAddress subnet);
+        bool TryConnect(String ssid, String password, IPAddress local_ip, IPAddress gateway, IPAddress subnet);
         IPAddress SetupAccessPoint();
     private:
 };

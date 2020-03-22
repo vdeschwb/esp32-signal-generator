@@ -15,7 +15,7 @@ class Settings_Module {
         void StoreString(int handle, String value);
         void StoreULong(int handle, unsigned long value);
         void StoreIp(int handle, IPAddress value);
-        void LoadString(int handle, char* dest);
+        void LoadString(int handle, String* dest);
         void LoadULong(int handle, unsigned long* dest);
         void LoadIp(int handle, IPAddress* value);
     private:

@@ -36,9 +36,8 @@ void Settings_Module::StoreIp(int handle, IPAddress value) {
     EEPROM.commit();
 }
 
-void Settings_Module::LoadString(int handle, char* dest) {
-    String buf = EEPROM.readString(addresses[handle]);
-    buf.toCharArray(dest, STRBUF_LEN);
+void Settings_Module::LoadString(int handle, String* dest) {
+    *dest = EEPROM.readString(addresses[handle]);
 }
 
 void Settings_Module::LoadULong(int handle, unsigned long* dest) {

@@ -20,7 +20,8 @@ Since the static files of the website are being served from a simple on-device f
 2. Build and upload
 3. Comment `#define FORMAT_FILESYSTEM` in *SigGen.ino*
 4. Build and upload again
-5. In Arduino: **Tools > ESP32 Sketch Data Upload** (this copies the contents of */data* to the µC's flash memory)
+5. [Optional] If you changed the front-end code, run parcel
+6. In Arduino: **Tools > ESP32 Sketch Data Upload** (this copies the contents of */data* to the µC's flash memory)
 
 ## First run
 

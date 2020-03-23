@@ -21,18 +21,19 @@ void Settings_Module::registerAddress(int handle, int length) {
 void Settings_Module::StoreString(int handle, String value) {
     registerAddress(handle, STRBUF_LEN);
     EEPROM.writeString(addresses[handle], value);
-    EEPROM.commit();
 }
 
 void Settings_Module::StoreULong(int handle, unsigned long value) {
     registerAddress(handle, sizeof(unsigned long));
     EEPROM.writeULong(addresses[handle], value);
-    EEPROM.commit();
 }
 
 void Settings_Module::StoreIp(int handle, IPAddress value) {
     registerAddress(handle, IPADDR_LEN);
     EEPROM.writeString(addresses[handle], value.toString());
+}
+
+void Settings_Module::Commit() {
     EEPROM.commit();
 }
 

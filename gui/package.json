@@ -1,0 +1,11 @@
+{
+    "dependencies": {
+        "jquery": "^3.4.1",
+        "parcel": "^1.12.4",
+        "parcel-plugin-inliner": "^1.0.14"
+    },
+    "scripts": {
+        "dev": "parcel index.html",
+        "build": "rm ../data/*; parcel build index.html; cp dist/index.html ../data"
+    }
+}

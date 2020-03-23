@@ -273,6 +273,7 @@ void handleConfig() {
                 server->send(400, "text/html", "Invalid parameter: " + server->argName(i));
             }
         }
+        settings->Commit();
 
         server->send(200, "text/html", "Configuration updated.");
         break;
@@ -359,7 +360,9 @@ void resetDefaults() {
     settings->StoreString(PASSWORD_SETTING, password);
     settings->StoreIp(LOCAL_IP_SETTING, local_ip);
     settings->StoreIp(GATEWAY_SETTING, gateway);
-    settings->StoreIp(GATEWAY_SETTING, gateway);
+    settings->StoreIp(SUBNET_SETTING, subnet);
+
+    settings->Commit();
 }
 
 void setup() {

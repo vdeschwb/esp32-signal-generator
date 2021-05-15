@@ -9,7 +9,7 @@ The [ESP32 DevKitC V4](https://docs.espressif.com/projects/esp-idf/en/latest/esp
 
 ### Software
 
-The [Arduino](https://www.arduino.cc/en/Main/Software) software version 1.8.12 with the [esp32 board extension](https://github.com/espressif/arduino-esp32) version 1.0.4 was used for building and uploading.
+The [Arduino](https://www.arduino.cc/en/Main/Software) software version 1.8.15 with the [esp32 board extension](https://github.com/espressif/arduino-esp32) version 1.0.6 was used for building and uploading. To upload the static web files to the device, [ESP32 Filesystem Uploader](https://randomnerdtutorials.com/install-esp32-filesystem-uploader-arduino-ide/) was used.
 
 ## Building
 
@@ -33,7 +33,7 @@ Whenever a WiFi connection could not be established, the device enters the acces
 
 ### WiFi Configuration
 
-In AP mode, the device's IP address is `192.168.4.1`. To configure the device for your WiFi, navigate to `http://<DEVICE_IP>/config.html`, set the SSID and enter a password. You can optionally assign a static IP address to the device, as well as configure the gateway and subnet mask.
+In AP mode, the device's IP address is `192.168.4.1`. To configure the device for your WiFi, navigate to `http://<DEVICE_IP>`, select `Configuration` in the header menu and set the SSID and enter a password. You can optionally assign a static IP address to the device, as well as configure the gateway and subnet mask.
 
 !["The signal generator's UI"](/images/Screenshot_config.png)
 
